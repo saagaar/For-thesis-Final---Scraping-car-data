@@ -61,7 +61,7 @@ driver.quit()
 df = pd.DataFrame(data)
 
 # Specify the Excel file path and name
-excel_file_path = 'output/output_data.xlsx'
+excel_file_path = 'output_nepalicars/output_data_init.xlsx'
 
 # Write the DataFrame to an Excel file
 df.to_excel(excel_file_path, index=False)

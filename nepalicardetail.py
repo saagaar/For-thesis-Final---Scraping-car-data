@@ -24,7 +24,7 @@ with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), op
         return driver.execute_script("return document.readyState === 'complete';")
 
     folder_path = str(Path(__file__).parents[0])
-    df = pd.read_excel('output/output_data.xlsx');
+    df = pd.read_excel('output/output_data_init.xlsx');
     # driver = selenium.webdriver.Chrome()
 
     row_array = df.to_numpy()
@@ -67,7 +67,7 @@ with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), op
             df.at[index, 'FEATURES'] = features
             df.at[index, 'Status'] = 1
         # Write the updated DataFrame to the same Excel file
-            df.to_excel('output/output_data.xlsx', index=False)
+            df.to_excel('output/nepalicarsData.xlsx', index=False)
 
 
 

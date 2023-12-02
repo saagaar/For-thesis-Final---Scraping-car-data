@@ -50,21 +50,28 @@ user_agent_list = [
 SCRAPEOPS_API_KEY='14d5b493-bd02-4965-a467-e3b60154da4a'
  
 
-useragent = random.choice(user_agent_list)
-options = webdriver.ChromeOptions() #newly added 
-options.headless = True #newly added 
-proxy_options = {
-    'proxy': {
-        'http': f'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
-        'https': f'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
-        'no_proxy': 'localhost:127.0.0.1'
-    }
-}
+# useragent = random.choice(user_agent_list)
+# options = webdriver.ChromeOptions() #newly added 
+# options.headless = True #newly added 
+# proxy_options = {
+#     'proxy': {
+#         'http': f'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
+#         'https': f'http://scrapeops:{SCRAPEOPS_API_KEY}@proxy.scrapeops.io:5353',
+#         'no_proxy': 'localhost:127.0.0.1'
+#     }
+# }
 # options.add_argument(f'--proxy-server={proxy_server_url}')
 # options.add_argument(f"--proxy-server={proxy_options['proxy']['http']}")
-options.add_argument(f'user-agent={useragent}')
-with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options ) as driver: #modified 
-    driver.maximize_window()        
+# options.add_argument(f'user-agent={useragent}')
+# # with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options ) as driver: #modified 
+#     driver.maximize_window()        
+
+
+options = webdriver.ChromeOptions() 
+# options.add_argument('--headless')
+with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options) as driver: #modified 
+    driver.maximize_window()
+
     def is_page_fully_loaded(driver):
         return driver.execute_script("return document.readyState === 'complete';")
 
@@ -89,7 +96,7 @@ with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), op
         if 'Status' not in eachRow or eachRow['Status'] != 1:
             driver.get('https://hamrobazaar.com/cars/'+eachRow['brandName'].lower()+'/'+slugify(eachRow['adsTitle'])+'/'+eachRow['id'].lower());
             url='https://hamrobazaar.com/cars/'+eachRow['brandName'].lower()+'/'+slugify(eachRow['adsTitle'])+'/'+eachRow['id'].lower();
-            WebDriverWait(driver, 15).until(lambda x: is_page_fully_loaded(x))
+            WebDriverWait(driver, 5).until(lambda x: is_page_fully_loaded(x))
             features="";
             df.at[index, 'Url'] = url
             df.at[index, 'Status'] = 1

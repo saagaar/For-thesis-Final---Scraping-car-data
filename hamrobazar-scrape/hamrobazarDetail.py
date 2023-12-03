@@ -91,7 +91,7 @@ with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), op
         input_string = input_string.strip('-')
         return input_string
 
-    for index, eachRow in df.iterrows():
+    for index, eachRow in df[df['Status'] != 1].iterrows():
 
         if 'Status' not in eachRow or eachRow['Status'] != 1:
             driver.get('https://hamrobazaar.com/cars/'+eachRow['brandName'].lower()+'/'+slugify(eachRow['adsTitle'])+'/'+eachRow['id'].lower());

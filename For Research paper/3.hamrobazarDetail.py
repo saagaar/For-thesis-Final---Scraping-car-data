@@ -71,12 +71,12 @@ options = webdriver.ChromeOptions()
 # options.add_argument('--headless')
 with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), options=options) as driver: #modified 
     driver.maximize_window()
-
+    
     def is_page_fully_loaded(driver):
         return driver.execute_script("return document.readyState === 'complete';")
 
     folder_path = str(Path(__file__).parents[0])
-    df = pd.read_excel('output_hamrobazaar/initial_data.xlsx');
+    df = pd.read_excel('output_hamrobazaar/raw_data_backup.xlsx');
     # driver = selenium.webdriver.Chrome()
 
     row_array = df.to_numpy()
@@ -113,12 +113,16 @@ with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), op
                 df.at[index, 'allFeatures'] = features
             except NoSuchElementException:
                 df.to_excel('output_hamrobazaar/raw_data.xlsx', index=False)
+                df.to_excel('output_hamrobazaar/raw_data_backup.xlsx', index=False)
                 continue
             
             df.to_excel('output_hamrobazaar/raw_data.xlsx', index=False)
+            df.to_excel('output_hamrobazaar/raw_data_backup.xlsx', index=False)
+
             time.sleep(1);
 
 
 
 
+            
     

@@ -112,11 +112,11 @@ with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), op
                     features += ""+featureTitle+":"+str(featureVal)+',\n'
                 df.at[index, 'allFeatures'] = features
             except NoSuchElementException:
-                df.to_excel('output_hamrobazaar/raw_data.xlsx', index=False)
+                df.to_excel('output_hamrobazaar/initia_raw_data.xlsx', index=False)
                 df.to_excel('output_hamrobazaar/raw_data_backup.xlsx', index=False)
                 continue
             
-            df.to_excel('output_hamrobazaar/raw_data.xlsx', index=False)
+            df.to_excel('output_hamrobazaar/initial_raw_data.xlsx', index=False)
             df.to_excel('output_hamrobazaar/raw_data_backup.xlsx', index=False)
 
             time.sleep(1);

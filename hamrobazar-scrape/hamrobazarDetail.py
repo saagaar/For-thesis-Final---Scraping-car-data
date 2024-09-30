@@ -17,6 +17,10 @@ import numpy as np
 import re
 import random
 
+
+
+driver = webdriver.Chrome(ChromeDriverManager().install())
+
 user_agent_list = [
         "Mozilla/5.0 (iPhone14,3; U; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/19A346 Safari/602.1",
         "Mozilla/5.0 (iPhone13,2; U; CPU iPhone OS 14_0 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/15E148 Safari/602.1",
@@ -100,7 +104,6 @@ with webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()), op
             features="";
             df.at[index, 'Url'] = url
             df.at[index, 'Status'] = 1
-
             try:
                 specificationsElement = driver.find_element(By.XPATH,'//*[@id="hb__root"]/div[2]/main/div/section/div[3]/div/div[3]/div');
                 eachSpecificationList=specificationsElement.find_elements(By.CLASS_NAME,'feature__item');

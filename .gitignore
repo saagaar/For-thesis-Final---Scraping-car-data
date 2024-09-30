@@ -2,3 +2,4 @@ thesis work/virtualenv/*
 virtualenv/*
 thesis work/.venv/*
 thesis work/deactivate/*
+*/virtualenv

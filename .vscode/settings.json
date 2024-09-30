@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "./thesis work/virtualenv/lib/python3.9/site-packages"
+    ]
+}
